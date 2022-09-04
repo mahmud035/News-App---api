@@ -13,6 +13,7 @@ const displayFirstNews = async () => {
   const firstNews = allNews[0];
   // console.log(firstNews);
 
+  const firstNewsObject = JSON.stringify(firstNews);
   const { urlToImage, title, content, publishedAt } = firstNews;
 
   const firstNewsContainer = document.getElementById('first-news-container');
@@ -20,7 +21,7 @@ const displayFirstNews = async () => {
   const firstNewsCard = document.createElement('div');
   firstNewsCard.classList.add('card', 'mb-3', 'mx-auto', 'border-0');
   firstNewsCard.innerHTML = `
-        <div class="row g-0">
+        <div class="row g-0" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick='displayNewsDetails(${firstNewsObject})'>
           <div class="col-md-6">
             <img
               src="${urlToImage}"
@@ -51,7 +52,7 @@ displayFirstNews();
 
 const displayRemainingNews = async () => {
   const allNews = await loadNewsData();
-  const remainingNews = allNews.slice(1, 30);
+  const remainingNews = allNews.slice(1, 50);
   // console.log(remainingNews)
 
   const remainingNewsContainer = document.getElementById(
@@ -59,13 +60,15 @@ const displayRemainingNews = async () => {
   );
 
   remainingNews.forEach((news) => {
-    console.log(news);
+    // console.log(news);
     const { urlToImage, title, content, publishedAt } = news;
+    const newsObject = JSON.stringify(news);
 
     const newsDiv = document.createElement('div');
     newsDiv.classList.add('col', 'pe-1');
     newsDiv.innerHTML = `
-         <div class="card mb-3  h-100 border-0">
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal" onclick='displayNewsDetails(${newsObject})'>
+         <div class="card mb-3 h-100 border-0" >
             <div class="row g-0">
               <div class="col-4 col-lg-12">
                   <img src="${urlToImage}" class="img-fluid " alt="..."/>
@@ -83,8 +86,8 @@ const displayRemainingNews = async () => {
               </div>
             </div>
           </div>
+      </div>
        
-  
     `;
 
     remainingNewsContainer.appendChild(newsDiv);
@@ -92,6 +95,44 @@ const displayRemainingNews = async () => {
 };
 
 displayRemainingNews();
+
+const displayNewsDetails = (news) => {
+  const { urlToImage, title, content, publishedAt } = news;
+  console.log(news);
+
+  const newsTitle = document.getElementById('news-title');
+  newsTitle.innerText = title;
+
+  const modalBody = document.getElementById('modal-body');
+  modalBody.textContent = '';
+
+  const newsCard = document.createElement('div');
+  newsCard.classList.add(
+    'card',
+    'mb-3',
+    'p-3',
+    'border-0',
+    'rounded',
+    'shadow-sm',
+    'news-details-card',
+    'mx-auto'
+  );
+  newsCard.innerHTML = `
+         <img src="${urlToImage}" class="card-img-top " alt="..." />
+         <div class="card-body pb-0">
+              <h5 class="card-title py-3">${title}</h5>
+              <p class="card-text text-muted">
+                ${content}
+              </p>
+               <p class="card-text">
+                  <small class="text-muted">${getDate(publishedAt)}</small>
+               </p>
+
+              
+         </div>
+    `;
+  modalBody.appendChild(newsCard);
+};
 
 const getDate = (publishedAt) => {
   const date = new Date(publishedAt);
