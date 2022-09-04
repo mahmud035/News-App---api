@@ -61,6 +61,17 @@ const displayRemainingNews = async () => {
 
   remainingNews.forEach((news) => {
     // console.log(news);
+
+    //* Error handle for inappropriate description data (<ol><li>....)
+    //*  Checking if the description property of the news object contains the html tag `<ol><li>` and if it does, it will not display the news.
+
+    if (news.description.includes('<ol><li>')) {
+      console.log(`contains <ol><li> tags `);
+      return;
+    }
+
+    // console.log(news);
+
     const { urlToImage, title, content, publishedAt } = news;
     const newsObject = JSON.stringify(news);
 
@@ -98,7 +109,7 @@ displayRemainingNews();
 
 const displayNewsDetails = (news) => {
   const { urlToImage, title, content, publishedAt } = news;
-  console.log(news);
+  console.log(news, news.description);
 
   const newsTitle = document.getElementById('news-title');
   newsTitle.innerText = title;

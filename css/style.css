@@ -121,4 +121,8 @@ select {
   #remaining-news-container img {
     height: 150px;
   }
+
+  .news-details-card {
+    width: 70%;
+  }
 }
