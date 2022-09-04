@@ -47,25 +47,77 @@ select {
 }
 
 /* Common CSS Classes */
+.card {
+  cursor: pointer;
+}
 
-/* Media Query  */
+.card-body h5,
+.card-body p {
+  line-height: 1.5;
+}
+
+.card-body h5:hover {
+  text-decoration: underline;
+}
+
+/* First News Container */
+#first-news-container .card-body h5 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+/* Remaining News Card */
+#first-news-container img,
+#remaining-news-container img {
+  width: 100%;
+}
+
+/** Media Query  */
 @media (max-width: 575px) {
   #remaining-news-container .card-body h5,
-  #remaining-news-container .card-body p {
+  #remaining-news-container .card-body p,
+  #first-news-container .card-body p {
     font-size: 15px !important;
-    line-height: 1.5;
+  }
+
+  #first-news-container .card-body h5 {
+    padding-left: 0;
+  }
+
+  #remaining-news-container img {
+    height: 110px;
+    object-fit: cover;
+    object-position: center center;
   }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 575px) {
   #remaining-news-container h5,
-  #remaining-news-container p {
+  #remaining-news-container p,
+  #first-news-container .card-body p {
     font-size: 17px !important;
-    line-height: 1.5;
+  }
+}
+
+@media (min-width: 575px) and (max-width: 991px) {
+  #remaining-news-container img {
+    height: 130px;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #first-news-container img {
+    height: 250px;
   }
 }
 
 @media (min-width: 992px) {
+  #first-news-container img {
+    height: 280px;
+  }
+
   #remaining-news-container img {
     height: 150px;
   }

@@ -20,21 +20,21 @@ const displayFirstNews = async () => {
   const firstNewsCard = document.createElement('div');
   firstNewsCard.classList.add('card', 'mb-3', 'mx-auto', 'border-0');
   firstNewsCard.innerHTML = `
-        <div class="row gx-3">
-          <div class="col-sm-6">
+        <div class="row g-0">
+          <div class="col-md-6">
             <img
               src="${urlToImage}"
               class="img-fluid "
               alt="..."
             />
           </div>
-          <div class="col-sm-6">
-            <div class="card-body">
+          <div class="col-md-6">
+            <div class="card-body ps-0 ps-md-3 pt-md-0">
               <h5 class="card-title">
                 ${title}
               </h5>
               <p class="card-text">
-                ${content}
+                ${content ? content.slice(0, 100) : 'Not Available'}
               </p>
               <p class="card-text">
                 <small class="text-muted">${getDate(publishedAt)}</small>
@@ -63,7 +63,7 @@ const displayRemainingNews = async () => {
     const { urlToImage, title, content, publishedAt } = news;
 
     const newsDiv = document.createElement('div');
-    newsDiv.classList.add('col');
+    newsDiv.classList.add('col', 'pe-1');
     newsDiv.innerHTML = `
          <div class="card mb-3  h-100 border-0">
             <div class="row g-0">
