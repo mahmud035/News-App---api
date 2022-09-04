@@ -47,3 +47,26 @@ select {
 }
 
 /* Common CSS Classes */
+
+/* Media Query  */
+@media (max-width: 575px) {
+  #remaining-news-container .card-body h5,
+  #remaining-news-container .card-body p {
+    font-size: 15px !important;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 576px) {
+  #remaining-news-container h5,
+  #remaining-news-container p {
+    font-size: 17px !important;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 992px) {
+  #remaining-news-container img {
+    height: 150px;
+  }
+}
