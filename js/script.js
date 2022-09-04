@@ -108,7 +108,7 @@ const displayRemainingNews = async () => {
 displayRemainingNews();
 
 const displayNewsDetails = (news) => {
-  const { urlToImage, title, content, publishedAt } = news;
+  const { urlToImage, title, content, publishedAt, url } = news;
   console.log(news, news.description);
 
   const newsTitle = document.getElementById('news-title');
@@ -133,8 +133,10 @@ const displayNewsDetails = (news) => {
          <div class="card-body pb-0">
               <h5 class="card-title py-3">${title}</h5>
               <p class="card-text text-muted">
-                ${content}
+                ${content.slice(0, -12)} 
+                 <a href="${url}" class="see-original-article">See Original Article</a>
               </p>
+             
                <p class="card-text">
                   <small class="text-muted">${getDate(publishedAt)}</small>
                </p>

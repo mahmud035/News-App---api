@@ -72,6 +72,17 @@ select {
   width: 100%;
 }
 
+/* Modal Data */
+.see-original-article {
+  text-decoration: none;
+  font-size: 14px;
+  color: #ee6983;
+}
+
+.see-original-article:hover {
+  color: #3d8361;
+}
+
 /** Media Query  */
 @media (max-width: 575px) {
   #remaining-news-container .card-body h5,
