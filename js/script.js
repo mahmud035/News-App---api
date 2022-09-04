@@ -63,7 +63,7 @@ const displayRemainingNews = async () => {
     // console.log(news);
 
     //* Error handle for inappropriate description data (<ol><li>....)
-    //*  Checking if the description property of the news object contains the html tag `<ol><li>` and if it does, it will not display the news.
+    //* Checking if the description property of the news object contains the html tag `<ol><li>` and if it does, it will not display the news.
 
     if (news.description.includes('<ol><li>')) {
       console.log(`contains <ol><li> tags `);
